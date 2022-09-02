@@ -1,0 +1,48 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.bully.myplugin</id>
+    <vendor email="" url="">hhhhhhh</vendor>
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Myplugin</name>
+    <description><![CDATA[
+        <h1> Demo plugin </h1>
+        测试插件 <br>
+        点击插件可以弹出一个弹窗
+        <p>
+        plugin demo <br />
+        <b>
+              <a href="https://www.geek45.com">Website</a> |
+              <a href="https://github.com/xiaopangzhi795/plugin-demo">GitHub</a> |
+          </b>
+        </p>
+  ]]>
+    </description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <typedHandler implementation="com.bully.myplugin.MyTypedHandler"/>
+    </extensions>
+    <!-- action配置，按钮展示在哪里需要在这配置 -->
+    <actions>
+        <action id="transEn" class="com.bully.myplugin.listener.TransEnAction" text="切换英文输入"
+                description="ctrl+shift+X 切换为英文">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift X"/>
+        </action>
+        <action id="transCh" class="com.bully.myplugin.listener.TransChAction" text="切换中文输入"
+                description="ctrl+shift+D 切换为中文">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift D"/>
+        </action>
+    </actions>
+    <applicationListeners>
+        <listener class="com.bully.myplugin.listener.MyProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+    </applicationListeners>
+</idea-plugin>
